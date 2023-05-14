@@ -2,7 +2,7 @@ import axios from "axios";
 import { selectUserAgent } from "../utils/agent";
 
 export const api = axios.create({
-  baseURL: "https://appanimeplus.tk",
+  baseURL: "https://tame-cyan-dog-veil.cyclic.app/gogoanime",
   headers: {
     "Content-type": "application/json",
   },
