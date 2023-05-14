@@ -33,7 +33,7 @@ function Home() {
 
     async function getRecentReleases() {
       try {
-        const { data } = await api.get("/play-api.php?latest");
+        const { data } = await api.get("/recent-episodes");
         setAnimesLatest(data.slice(0, 15));
         /*  console.log(data.slice(0, 15)); */
       } catch (err) {
@@ -54,7 +54,7 @@ function Home() {
       try {
         const query = search.replace("?", "").replace(/[^a-zA-Zs]/g, "_");
         if (query !== "") {
-          const { data } = await api.get(`/play-api.php?search=${query}`);
+          const { data } = await api.get(`/search?keyw=${query}`);
 
           if (Array.isArray(data)) {
             setAnimesSearch(data.slice(0, 20));
