@@ -6,13 +6,13 @@ import SwitchTheme from "../../components/SwitchTheme";
 import * as S from "./styles";
 
 function Anime() {
-  const { animeId } = useParams();
+  const { id } = useParams();
   const history = useHistory();
 
   const [details, setDetails] = useState([]);
   const [episodes, setEpisodes] = useState([]);
 
-useEffect(() => {
+  useEffect(() => {
     async function getDetails() {
       try {
         const { data } = await api.get(`/info/${id}`);
@@ -24,7 +24,7 @@ useEffect(() => {
 
     async function getAllEpisodes() {
       try {
-        const { data } = await api.get(`/epis/${animeId}`);
+        const { data } = await api.get(`/epis/${id}`);
 
         console.log(data);
         setEpisodes(data);
@@ -33,7 +33,7 @@ useEffect(() => {
       }
     }
 
-    if (animeId) {
+    if (id) {
       getDetails();
       getAllEpisodes();
     }
@@ -41,7 +41,7 @@ useEffect(() => {
 
   function handleClickEpisode(videoId) {
     history.push({
-      pathname: `/anime/${animeId}/episode/${videoId}`,
+      pathname: `/anime/${id}/episode/${videoId}`,
     });
   }
 
@@ -57,24 +57,24 @@ useEffect(() => {
       </S.GoBack>
       <S.Page>
         {details?.map((item) => (
-          <S.DetailsContainer key={item.animeId}>
+          <S.DetailsContainer key={item.id}>
             <S.HeaderInfo>
               <S.ImageAnime>
                 <img
-                  src={`${item.animeImg}`}
-                  alt={item.animeTitle}
+                  src={`${item.category_image}`}
+                  alt={item.category_name}
                 />
               </S.ImageAnime>
               <S.Hero>
-                <h2>{item.animeTitle}</h2>
-                <span>{item.synopsis}</span>
+                <h2>{item.category_name}</h2>
+                <span>{item.category_description}</span>
 
                 <S.Footer>
                   <p>
-                    <strong>Gênero:</strong> {item.genres}
+                    <strong>Gênero:</strong> {item.category_genres}
                   </p>
                   <p>
-                    <strong>Ano:</strong> {item.releaseDate}
+                    <strong>Ano:</strong> {item.ano}
                   </p>
                 </S.Footer>
               </S.Hero>
@@ -82,7 +82,7 @@ useEffect(() => {
           </S.DetailsContainer>
         ))}
 
-<S.EpisodesContainer>
+        <S.EpisodesContainer>
           <S.TitleCategory>
             <h2>Episódios</h2>
           </S.TitleCategory>
