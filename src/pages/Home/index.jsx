@@ -166,7 +166,7 @@ function Home() {
                     onClick={() => goToAnimePage(item.id)}
                   >
                     <S.SliderCard
-                      bgURL={`https://cdn.appanimeplus.tk/img/${item.category_image}`}
+                      bgURL={`${item.animeImg}`}
                     >
                       <span>{item.category_name}</span>
                     </S.SliderCard>
@@ -188,9 +188,9 @@ function Home() {
                     }
                   >
                     <S.SliderCard
-                      bgURL={`https://cdn.appanimeplus.tk/img/${item.category_image}`}
+                      bgURL={`${item.animeImg}`}
                     >
-                      <span>{item.title}</span>
+                      <span>{item.animeTitle}</span>
                     </S.SliderCard>
                   </S.SliderItem>
                 ))}
