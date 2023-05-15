@@ -15,7 +15,7 @@ function Anime() {
   useEffect(() => {
     async function getDetails() {
       try {
-        const { data } = await api.get(`/play-api.php?info=${id}`);
+        const { data } = await api.get(`/info/${id}`);
         setDetails(data);
       } catch (err) {
         console.log("Err on get anime details", err);
@@ -24,10 +24,10 @@ function Anime() {
 
     async function getAllEpisodes() {
       try {
-        const { data } = await api.get(`/play-api.php?cat_id=${id}`);
+        const { data } = await api.get(`/info/${id}`);
 
         console.log(data);
-        setEpisodes(data);
+        setEpisodes(data.episodes);
       } catch (err) {
         console.log("Err on load episodies", err);
       }
@@ -41,7 +41,7 @@ function Anime() {
 
   function handleClickEpisode(videoId) {
     history.push({
-      pathname: `/anime/${id}/episode/${videoId}`,
+      pathname: `/anime/${animeTitle}/episode/${videoId}`,
     });
   }
 
@@ -61,20 +61,20 @@ function Anime() {
             <S.HeaderInfo>
               <S.ImageAnime>
                 <img
-                  src={`https://cdn.appanimeplus.tk/img/${item.category_image}`}
+                  src={`${item.animeImg}`}
                   alt={item.category_name}
                 />
               </S.ImageAnime>
               <S.Hero>
-                <h2>{item.category_name}</h2>
-                <span>{item.category_description}</span>
+                <h2>{item.animeTitle}</h2>
+                <span>{item.synopsis}</span>
 
                 <S.Footer>
                   <p>
-                    <strong>Gênero:</strong> {item.category_genres}
+                    <strong>Gênero:</strong> {item.genres}
                   </p>
                   <p>
-                    <strong>Ano:</strong> {item.ano}
+                    <strong>Ano:</strong> {item.releaseDate}
                   </p>
                 </S.Footer>
               </S.Hero>
@@ -91,10 +91,10 @@ function Anime() {
             {episodes?.map((item, index) => (
               <S.EpisodeItem
                 watched={item.watched}
-                key={`video-${item.video_id}-${index}`}
-                onClick={() => handleClickEpisode(item.video_id)}
+                key={`video-${item.episodeId}-${index}`}
+                onClick={() => handleClickEpisode(item.episodeId)}
               >
-                {item.title}
+                {item.episodeId}
               </S.EpisodeItem>
             ))}
           </S.ListEpisodes>
