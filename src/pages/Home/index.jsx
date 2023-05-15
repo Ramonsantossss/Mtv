@@ -105,7 +105,7 @@ function Home() {
 
   function handleClickEpisode(animeId, episodeId) {
     history.push({
-      pathname: `/anime/${animeId}/episode/${episodeId}`,
+      pathname: `/episode/${episodeId}`,
     });
   }
 
@@ -190,7 +190,7 @@ function Home() {
                     <S.SliderCard
                       bgURL={`${item.animeImg}`}
                     >
-                      <span>{item.animeTitle}</span>
+                      <span>{item.episodeId}</span>
                     </S.SliderCard>
                   </S.SliderItem>
                 ))}
