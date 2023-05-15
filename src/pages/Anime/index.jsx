@@ -39,9 +39,9 @@ function Anime() {
     }
   }, [id]);
 
-  function handleClickEpisode(videoId) {
+  function handleClickEpisode(video_Id) {
     history.push({
-      pathname: `/anime/${id}/episode/${videoId}`,
+      pathname: `/anime/${id}/episode/${video_Id}`,
     });
   }
 
@@ -90,7 +90,7 @@ function Anime() {
           <S.ListEpisodes>
             {episodes?.map((item, index) => (
               <S.EpisodeItem
-                watched={item.watched}
+                
                 key={`video-${item.video_id}-${index}`}
                 onClick={() => handleClickEpisode(item.video_id)}
               >
