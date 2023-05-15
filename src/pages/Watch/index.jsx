@@ -36,7 +36,7 @@ function Watch() {
       {currentEpisode?.map((item) => (
         <S.VideoWrapper key={`episode-${item.episodeId}`}>
           <video
-            src={item.sources[0].file}
+            src={item.link[0].file}
             controls
           />
           <span onClick={handleGoBack}>Voltar</span>
