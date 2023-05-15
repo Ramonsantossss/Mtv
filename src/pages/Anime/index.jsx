@@ -15,8 +15,12 @@ function Anime() {
   useEffect(() => {
     async function getDetails() {
       try {
-        const { data } = await api.get(`/info/${animeId}`);
-        setDetails(data);
+
+fetch(encodeURI(`https://tame-cyan-dog-veil.cyclic.app/gogoanime/info/${animeId}`))
+  .then(response => response.json())
+        .then(data => {
+setDetails(data);
+})
       } catch (err) {
         console.log("Err on get anime details", err);
       }
@@ -24,16 +28,17 @@ function Anime() {
 
     async function getAllEpisodes() {
       try {
-        const { data } = await api.get(`/info/${animeId}`);
-
-        console.log(data);
-        setEpisodes(data.episodes);
+fetch(encodeURI(`https://tame-cyan-dog-veil.cyclic.app/gogoanime/info/${animeId}`))
+  .then(response => response.json())
+        .then(data => {
+setDetails(data.episodes);
+})
       } catch (err) {
         console.log("Err on load episodies", err);
       }
     }
 
-    if (id) {
+    if (animeId) {
       getDetails();
       getAllEpisodes();
     }
@@ -41,7 +46,7 @@ function Anime() {
 
   function handleClickEpisode(videoId) {
     history.push({
-      pathname: `/anime/${animeTitle}/episode/${videoId}`,
+      pathname: `/anime/${animeId}/episode/${videoId}`,
     });
   }
 
@@ -94,7 +99,7 @@ function Anime() {
                 key={`video-${item.episodeId}-${index}`}
                 onClick={() => handleClickEpisode(item.episodeId)}
               >
-                {item.episodeId}
+                {item.animeTitle}
               </S.EpisodeItem>
             ))}
           </S.ListEpisodes>
