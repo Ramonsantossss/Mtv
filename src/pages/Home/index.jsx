@@ -99,8 +99,8 @@ function Home() {
     });
   }
 
-  function goToAnimePage(id) {
-    history.push(`/anime/${id}`);
+  function goToAnimePage(animeId) {
+    history.push(`/anime/${animeId}`);
   }
 
   function handleClickEpisode(animeId, episodeId) {
@@ -140,8 +140,8 @@ function Home() {
               <Carousel>
                 {animesSearch?.map((item, index) => (
                   <S.SliderItem
-                    key={`latest-${index}-${item.id}`}
-                    onClick={() => goToAnimePage(item.id)}
+                    key={`latest-${index}-${item.animeId}`}
+                    onClick={() => goToAnimePage(item.animeId)}
                   >
                     <S.SliderCard
                       bgURL={`${item.animeImg}`}
@@ -182,9 +182,9 @@ function Home() {
               <Carousel>
                 {animesLatest?.map((item, index) => (
                   <S.SliderItem
-                    key={`latest-${index}-${item.video_id}`}
+                    key={`latest-${index}-${item.episodeId}`}
                     onClick={() =>
-                      handleClickEpisode(item.category_id, item.video_id)
+                      handleClickEpisode(item.category_id, item.episodeId)
                     }
                   >
                     <S.SliderCard
