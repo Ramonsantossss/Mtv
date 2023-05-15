@@ -103,9 +103,9 @@ function Home() {
     history.push(`/anime/${id}`);
   }
 
-  function handleClickEpisode(animeId, videoId) {
+  function handleClickEpisode(animeId, episodeId) {
     history.push({
-      pathname: `/anime/${animeId}/episode/${videoId}`,
+      pathname: `/anime/${animeId}/episode/${episodeId}`,
     });
   }
 
@@ -144,9 +144,9 @@ function Home() {
                     onClick={() => goToAnimePage(item.id)}
                   >
                     <S.SliderCard
-                      bgURL={`https://cdn.appanimeplus.tk/img/${item.category_image}`}
+                      bgURL={`${item.animeImg}`}
                     >
-                      <span>{item.category_name}</span>
+                      <span>{item.animeTitle}</span>
                     </S.SliderCard>
                   </S.SliderItem>
                 ))}
