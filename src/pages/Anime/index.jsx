@@ -12,15 +12,11 @@ function Anime() {
   const [details, setDetails] = useState([]);
   const [episodes, setEpisodes] = useState([]);
 
-  useEffect(() => {
+useEffect(() => {
     async function getDetails() {
       try {
-
-fetch(encodeURI(`https://tame-cyan-dog-veil.cyclic.app/gogoanime/info/${animeId}`))
-  .then(response => response.json())
-        .then(data => {
-setDetails(data);
-})
+        const { data } = await api.get(`/play-api.php?info=${id}`);
+        setDetails(data);
       } catch (err) {
         console.log("Err on get anime details", err);
       }
@@ -28,11 +24,10 @@ setDetails(data);
 
     async function getAllEpisodes() {
       try {
-fetch(encodeURI(`https://tame-cyan-dog-veil.cyclic.app/gogoanime/info/${animeId}`))
-  .then(response => response.json())
-        .then(data => {
-setDetails(data.episodes);
-})
+        const { data } = await api.get(`/epis/${animeId}`);
+
+        console.log(data);
+        setEpisodes(data);
       } catch (err) {
         console.log("Err on load episodies", err);
       }
@@ -67,7 +62,7 @@ setDetails(data.episodes);
               <S.ImageAnime>
                 <img
                   src={`${item.animeImg}`}
-                  alt={item.category_name}
+                  alt={item.animeTitle}
                 />
               </S.ImageAnime>
               <S.Hero>
@@ -87,7 +82,7 @@ setDetails(data.episodes);
           </S.DetailsContainer>
         ))}
 
-        <S.EpisodesContainer>
+<S.EpisodesContainer>
           <S.TitleCategory>
             <h2>Episódios</h2>
           </S.TitleCategory>
@@ -96,10 +91,10 @@ setDetails(data.episodes);
             {episodes?.map((item, index) => (
               <S.EpisodeItem
                 watched={item.watched}
-                key={`video-${item.episodeId}-${index}`}
-                onClick={() => handleClickEpisode(item.episodeId)}
+                key={`video-${item.video_id}-${index}`}
+                onClick={() => handleClickEpisode(item.video_id)}
               >
-                {item.animeTitle}
+                {item.title}
               </S.EpisodeItem>
             ))}
           </S.ListEpisodes>
