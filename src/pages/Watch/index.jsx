@@ -34,13 +34,13 @@ function Watch() {
   return (
     <S.Container>
       {currentEpisode?.map((item) => (
-        <S.VideoWrapper key={`episode-${item.episodeId}-${item.animeTitle}`}>
+        <S.VideoWrapper key={`episode-${item.episodeId}`}>
           <video
-            src={item..sources[0].file}
+            src={item.sources[0].file}
             controls
           />
           <span onClick={handleGoBack}>Voltar</span>
-          <S.Name>{item.animeTitle}</S.Name>
+          //<S.Name>{item.animeTitle}</S.Name>
         </S.VideoWrapper>
       ))}
     </S.Container>
