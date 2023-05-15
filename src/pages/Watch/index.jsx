@@ -14,7 +14,7 @@ function Watch() {
   useEffect(() => {
     async function getCurrentEpisode() {
       try {
-        const { data } = await api.get(`/play-api.php?episodios=${videoId}`);
+        const { data } = await api.get(`/watch/${episodeId}`);
         console.log(data);
         setCurrentEpisode(data);
       } catch (err) {
@@ -40,7 +40,7 @@ function Watch() {
             controls
           />
           <span onClick={handleGoBack}>Voltar</span>
-          <S.Name>{item.title}</S.Name>
+          <S.Name>{item.animeTitle}</S.Name>
         </S.VideoWrapper>
       ))}
     </S.Container>
