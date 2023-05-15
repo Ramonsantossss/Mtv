@@ -15,7 +15,7 @@ function Anime() {
 useEffect(() => {
     async function getDetails() {
       try {
-        const { data } = await api.get(`/play-api.php?info=${id}`);
+        const { data } = await api.get(`/info/${id}`);
         setDetails(data);
       } catch (err) {
         console.log("Err on get anime details", err);
