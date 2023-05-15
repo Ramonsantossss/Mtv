@@ -46,6 +46,11 @@ function Home() {
       await getRecentReleases();
     }
 
+/*
+https://tame-cyan-dog-veil.cyclic.app/gogoanime/
+https://tame-cyan-dog-veil.cyclic.app/gogoanime/info/tonikaku-kawaii-2nd-season
+https://tame-cyan-dog-veil.cyclic.app/gogoanime/search?keyw=black%20clover
+*/
     getResultsOfAnimes();
   }, []);
 
@@ -99,13 +104,13 @@ function Home() {
     });
   }
 
-  function goToAnimePage(animeId) {
-    history.push(`/anime/${animeId}`);
+  function goToAnimePage(id) {
+    history.push(`/anime/${id}`);
   }
 
-  function handleClickEpisode(animeId, episodeId) {
+  function handleClickEpisode(animeId, videoId) {
     history.push({
-      pathname: `/episode/${episodeId}`,
+      pathname: `/anime/${animeId}/episode/${videoId}`,
     });
   }
 
@@ -140,13 +145,13 @@ function Home() {
               <Carousel>
                 {animesSearch?.map((item, index) => (
                   <S.SliderItem
-                    key={`latest-${index}-${item.animeId}`}
-                    onClick={() => goToAnimePage(item.animeId)}
+                    key={`latest-${index}-${item.id}`}
+                    onClick={() => goToAnimePage(item.id)}
                   >
                     <S.SliderCard
-                      bgURL={`${item.animeImg}`}
+                      bgURL={`${item.category_image}`}
                     >
-                      <span>{item.animeTitle}</span>
+                      <span>{item.category_name}</span>
                     </S.SliderCard>
                   </S.SliderItem>
                 ))}
@@ -166,7 +171,7 @@ function Home() {
                     onClick={() => goToAnimePage(item.id)}
                   >
                     <S.SliderCard
-                      bgURL={`${item.animeImg}`}
+                      bgURL={`${item.category_image}`}
                     >
                       <span>{item.category_name}</span>
                     </S.SliderCard>
@@ -182,15 +187,15 @@ function Home() {
               <Carousel>
                 {animesLatest?.map((item, index) => (
                   <S.SliderItem
-                    key={`latest-${index}-${item.episodeId}`}
+                    key={`latest-${index}-${item.video_id}`}
                     onClick={() =>
-                      handleClickEpisode(item.category_id, item.episodeId)
+                      handleClickEpisode(item.category_id, item.video_id)
                     }
                   >
                     <S.SliderCard
-                      bgURL={`${item.animeImg}`}
+                      bgURL={`${item.category_image}`}
                     >
-                      <span>{item.episodeId}</span>
+                      <span>{item.title}</span>
                     </S.SliderCard>
                   </S.SliderItem>
                 ))}
