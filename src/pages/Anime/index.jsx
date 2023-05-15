@@ -6,7 +6,7 @@ import SwitchTheme from "../../components/SwitchTheme";
 import * as S from "./styles";
 
 function Anime() {
-  const { id } = useParams();
+  const { animeId } = useParams();
   const history = useHistory();
 
   const [details, setDetails] = useState([]);
@@ -15,7 +15,7 @@ function Anime() {
   useEffect(() => {
     async function getDetails() {
       try {
-        const { data } = await api.get(`/info/${id}`);
+        const { data } = await api.get(`/info/${animeId}`);
         setDetails(data);
       } catch (err) {
         console.log("Err on get anime details", err);
@@ -24,7 +24,7 @@ function Anime() {
 
     async function getAllEpisodes() {
       try {
-        const { data } = await api.get(`/info/${id}`);
+        const { data } = await api.get(`/info/${animeId}`);
 
         console.log(data);
         setEpisodes(data.episodes);
@@ -57,7 +57,7 @@ function Anime() {
       </S.GoBack>
       <S.Page>
         {details?.map((item) => (
-          <S.DetailsContainer key={item.id}>
+          <S.DetailsContainer key={item.animeId}>
             <S.HeaderInfo>
               <S.ImageAnime>
                 <img
