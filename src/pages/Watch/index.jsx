@@ -33,17 +33,19 @@ function Watch() {
   const { aniii } = await api.get(`/watch/${video_id}`);
   return (
     <S.Container>
-      {currentEpisode?.map((item) => (
-        <S.VideoWrapper key={`episode-${item.video_id}`}>
           <video
-            src={aniii.link}
+            src={`${aniii.link}`}
           />
-          <span onClick={handleGoBack}>Voltar</span>
-
-        </S.VideoWrapper>
-      ))}
     </S.Container>
   );
 }
      //     <S.Name>{item.title}</S.Name>
+     //         <S.VideoWrapper key={`episode-${item.video_id}`}>
+     //         </S.VideoWrapper>
+     /*
+           {currentEpisode?.map((item) => (
+                 ))}
+                           <span onClick={handleGoBack}>Voltar</span>
+     */
+
 export default Watch;
