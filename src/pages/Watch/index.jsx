@@ -6,7 +6,7 @@ import { useParams, useHistory } from "react-router-dom";
 import * as S from "./styles";
 
 function Watch() {
-  const { videoId } = useParams();
+  const { video_id } = useParams();
   const history = useHistory();
 
   const [currentEpisode, setCurrentEpisode] = useState([]);
@@ -14,7 +14,7 @@ function Watch() {
   useEffect(() => {
     async function getCurrentEpisode() {
       try {
-        const { data } = await api.get(`/watch/${videoId}`);
+        const { data } = await api.get(`/watch/${video_id}`);
         console.log(data);
         setCurrentEpisode(data);
       } catch (err) {
@@ -22,10 +22,10 @@ function Watch() {
       }
     }
 
-    if (videoId) {
+    if (video_id) {
       getCurrentEpisode();
     }
-  }, [videoId]);
+  }, [video_id]);
 
   function handleGoBack() {
     history.goBack();
@@ -34,17 +34,17 @@ function Watch() {
   return (
     <S.Container>
       {currentEpisode?.map((item) => (
-        <S.VideoWrapper key={`episode-${item.videoId}`}>
+        <S.VideoWrapper key={`episode-${item.video_id}`}>
           <video
-            src={item.link[0].file}
+            src={item.link}
             controls
           />
           <span onClick={handleGoBack}>Voltar</span>
-          <S.Name>{item.title}</S.Name>
+
         </S.VideoWrapper>
       ))}
     </S.Container>
   );
 }
-
+     //     <S.Name>{item.title}</S.Name>
 export default Watch;
