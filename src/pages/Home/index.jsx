@@ -189,7 +189,7 @@ https://tame-cyan-dog-veil.cyclic.app/gogoanime/search?keyw=black%20clover
                   <S.SliderItem
                     key={`latest-${index}-${item.video_id}`}
                     onClick={() =>
-                      href={`${api}${video_id}`}
+                      handleClickEpisode(item.category_id, item.video_id)
                     }
                   >
                     <S.SliderCard
