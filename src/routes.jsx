@@ -10,8 +10,8 @@ function Routes() {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/anime/:animeId" component={Anime} />
-        <Route exact path="episode/:videoId" component={Watch} />
+        <Route exact path="/anime/:id" component={Anime} />
+        <Route exact path="/episode/:videoId" component={Watch} />
       </Switch>
     </BrowserRouter>
   );
