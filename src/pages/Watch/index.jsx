@@ -14,7 +14,7 @@ function Watch() {
   useEffect(() => {
     async function getCurrentEpisode() {
       try {
-        const { data } = await api.get(`/watch/${episodeId}`);
+        const { data } = await api.get(`/watch/${videoId}`);
         console.log(data);
         setCurrentEpisode(data);
       } catch (err) {
@@ -34,13 +34,13 @@ function Watch() {
   return (
     <S.Container>
       {currentEpisode?.map((item) => (
-        <S.VideoWrapper key={`episode-${item.episodeId}`}>
+        <S.VideoWrapper key={`episode-${item.videoId}`}>
           <video
             src={item.link[0].file}
             controls
           />
           <span onClick={handleGoBack}>Voltar</span>
-          //<S.Name>{item.animeTitle}</S.Name>
+          <S.Name>{item.title}</S.Name>
         </S.VideoWrapper>
       ))}
     </S.Container>
