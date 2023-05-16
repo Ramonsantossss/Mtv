@@ -110,7 +110,7 @@ https://tame-cyan-dog-veil.cyclic.app/gogoanime/search?keyw=black%20clover
 
   function handleClickEpisode(animeId, videoId) {
     history.push({
-      pathname: `/anime/${id}/episode/${videoId}`,
+      pathname: `/episode/${videoId}`,
     });
   }
 
