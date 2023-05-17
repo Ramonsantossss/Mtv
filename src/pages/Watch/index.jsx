@@ -6,7 +6,7 @@ import { useParams, useHistory } from "react-router-dom";
 import * as S from "./styles";
 
 function Watch() {
-  const { video_id } = useParams();
+  const { videoId } = useParams();
   const history = useHistory();
 
   const [currentEpisode, setCurrentEpisode] = useState([]);
@@ -14,7 +14,7 @@ function Watch() {
   useEffect(() => {
     async function getCurrentEpisode() {
       try {
-        const { data } = await api.get(`/watch/${video_id}`);
+        const { data } = await api.get(`/watch/${videoId}`);
         console.log(data);
         setCurrentEpisode(data);
       } catch (err) {
@@ -22,30 +22,29 @@ function Watch() {
       }
     }
 
-    if (video_id) {
+    if (videoId) {
       getCurrentEpisode();
     }
-  }, [video_id]);
+  }, [videoId]);
 
   function handleGoBack() {
     history.goBack();
   }
-  const { aniii } = await api.get(`/watch/${video_id}`);
+
   return (
     <S.Container>
+      {currentEpisode?.map((item) => (
+        <S.VideoWrapper key={`episode-${item.video_id}-${item.category_id}`}>
           <video
-            src={`${aniii.link}`}
+            src={item.locationhd || item.locationsd || item.location}
+            controls
           />
+          <span onClick={handleGoBack}>Voltar</span>
+          <S.Name>{item.title}</S.Name>
+        </S.VideoWrapper>
+      ))}
     </S.Container>
   );
 }
-     //     <S.Name>{item.title}</S.Name>
-     //         <S.VideoWrapper key={`episode-${item.video_id}`}>
-     //         </S.VideoWrapper>
-     /*
-           {currentEpisode?.map((item) => (
-                 ))}
-                           <span onClick={handleGoBack}>Voltar</span>
-     */
 
 export default Watch;
