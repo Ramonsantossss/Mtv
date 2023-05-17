@@ -46,11 +46,6 @@ function Home() {
       await getRecentReleases();
     }
 
-/*
-https://tame-cyan-dog-veil.cyclic.app/gogoanime/
-https://tame-cyan-dog-veil.cyclic.app/gogoanime/info/tonikaku-kawaii-2nd-season
-https://tame-cyan-dog-veil.cyclic.app/gogoanime/search?keyw=black%20clover
-*/
     getResultsOfAnimes();
   }, []);
 
@@ -108,9 +103,9 @@ https://tame-cyan-dog-veil.cyclic.app/gogoanime/search?keyw=black%20clover
     history.push(`/anime/${id}`);
   }
 
-  function handleClickEpisode(animeId, video_id) {
+  function handleClickEpisode(animeId, videoId) {
     history.push({
-      pathname: `/episode/${video_id}`,
+      pathname: `/anime/${animeId}/episode/${videoId}`,
     });
   }
 
