@@ -94,7 +94,7 @@ function Anime() {
                 key={`video-${item.video_id}-${index}`}
                 onClick={() => handleClickEpisode(item.video_id)}
               >
-                {item.title}
+                {item.video_id}
               </S.EpisodeItem>
             ))}
           </S.ListEpisodes>
