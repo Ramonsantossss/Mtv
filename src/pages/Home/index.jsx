@@ -23,7 +23,7 @@ function Home() {
   useEffect(() => {
     async function getMorePopular() {
       try {
-        const { data } = await api.get("/play-api.php?populares");
+        const { data } = await api.get("/popular");
         setAnimesPopular(data.slice(0, 15));
         /* console.log(data.slice(0, 15)); */
       } catch (err) {
