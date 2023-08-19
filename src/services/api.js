@@ -2,7 +2,7 @@ import axios from "axios";
 import { selectUserAgent } from "../utils/agent";
 
 export const api = axios.create({
-  baseURL: "https://tame-cyan-dog-veil.cyclic.app/gogoanime",
+  baseURL: "https://determined-blue-bandicoot.cyclic.app",
   headers: {
     "Content-type": "application/json",
   },
