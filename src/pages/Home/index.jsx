@@ -23,7 +23,7 @@ function Home() {
   useEffect(() => {
     async function getMorePopular() {
       try {
-        const { data } = await api.get("/popular");
+        const { data } = await api.get("/top/1");
         setAnimesPopular(data.slice(0, 15));
         /* console.log(data.slice(0, 15)); */
       } catch (err) {
@@ -33,7 +33,7 @@ function Home() {
 
     async function getRecentReleases() {
       try {
-        const { data } = await api.get("/recent-episodes");
+        const { data } = await api.get("/play-api.php?latest");
         setAnimesLatest(data.slice(0, 15));
         /*  console.log(data.slice(0, 15)); */
       } catch (err) {
@@ -54,7 +54,7 @@ function Home() {
       try {
         const query = search.replace("?", "").replace(/[^a-zA-Zs]/g, "_");
         if (query !== "") {
-          const { data } = await api.get(`/search?keyw=${query}`);
+          const { data } = await api.get(`/play-api.php?search=${query}`);
 
           if (Array.isArray(data)) {
             setAnimesSearch(data.slice(0, 20));
@@ -144,7 +144,7 @@ function Home() {
                     onClick={() => goToAnimePage(item.id)}
                   >
                     <S.SliderCard
-                      bgURL={`${item.category_image}`}
+                      bgURL={`https://cdn.appanimeplus.tk/img/${item.category_image}`}
                     >
                       <span>{item.category_name}</span>
                     </S.SliderCard>
@@ -166,9 +166,9 @@ function Home() {
                     onClick={() => goToAnimePage(item.id)}
                   >
                     <S.SliderCard
-                      bgURL={`${item.category_image}`}
+                      bgURL={`${item.image}`}
                     >
-                      <span>{item.category_name}</span>
+                      <span>{item.name}</span>
                     </S.SliderCard>
                   </S.SliderItem>
                 ))}
@@ -188,7 +188,7 @@ function Home() {
                     }
                   >
                     <S.SliderCard
-                      bgURL={`${item.category_image}`}
+                      bgURL={`https://cdn.appanimeplus.tk/img/${item.category_image}`}
                     >
                       <span>{item.title}</span>
                     </S.SliderCard>
