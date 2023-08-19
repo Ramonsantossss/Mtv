@@ -33,8 +33,8 @@ function Home() {
 
     async function getRecentReleases() {
       try {
-        const { data } = await api.get("/play-api.php?latest");
-        setAnimesLatest(data.slice(0, 15));
+        const { data } = await api.get("/recents");
+        setAnimesLatest(data.mangas.slice(0, 15));
         /*  console.log(data.slice(0, 15)); */
       } catch (err) {
         console.log("Err on get recents releases", err);
@@ -54,7 +54,7 @@ function Home() {
       try {
         const query = search.replace("?", "").replace(/[^a-zA-Zs]/g, "_");
         if (query !== "") {
-          const { data } = await api.get(`/play-api.php?search=${query}`);
+          const { data } = await api.get(`/search?q=${query}`);
 
           if (Array.isArray(data)) {
             setAnimesSearch(data.slice(0, 20));
@@ -182,15 +182,15 @@ function Home() {
               <Carousel>
                 {animesLatest?.map((item, index) => (
                   <S.SliderItem
-                    key={`latest-${index}-${item.video_id}`}
+                    key={`latest-${index}-${item.id}`}
                     onClick={() =>
-                      handleClickEpisode(item.category_id, item.video_id)
+                      handleClickEpisode(item.chapters_count, item.id)
                     }
                   >
                     <S.SliderCard
-                      bgURL={`https://cdn.appanimeplus.tk/img/${item.category_image}`}
+                      bgURL={`${item.image}`}
                     >
-                      <span>{item.title}</span>
+                      <span>{item.name}</span>
                     </S.SliderCard>
                   </S.SliderItem>
                 ))}
