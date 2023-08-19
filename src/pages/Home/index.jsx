@@ -166,7 +166,7 @@ function Home() {
                     onClick={() => goToAnimePage(item.id)}
                   >
                     <S.SliderCard
-                      bgURL={`${item.image}`}
+                      bgURL={item.image}
                     >
                       <span>{item.name}</span>
                     </S.SliderCard>
