@@ -154,26 +154,27 @@ function Home() {
             </S.SliderContainer>
           </S.Results>
         ) : (
-          <S.Results>
-            <S.TitleCategory>
-              <h2>Populares</h2>
-            </S.TitleCategory>
-            <S.SliderContainer>
-              <Carousel>
-                {animesPopular?.map((item, index) => (
-                  <S.SliderItem
-                    key={`latest-${index}-${item.id}`}
-                    onClick={() => goToAnimePage(item.id)}
-                  >
-                    <S.SliderCard
-                      bgURL={item.image}
-                    >
-                      <span>{item.name}</span>
-                    </S.SliderCard>
-                  </S.SliderItem>
-                ))}
-              </Carousel>
-            </S.SliderContainer>
+{/* Parte do código que exibe animes populares */}
+<S.Results>
+  <S.TitleCategory>
+    <h2>Populares</h2>
+  </S.TitleCategory>
+  <S.SliderContainer>
+    <Carousel>
+      {animesPopular?.map((item, index) => (
+        <S.SliderItem
+          key={`popular-${index}-${item.id}`}
+          onClick={() => goToAnimePage(item.id)}
+        >
+          <S.SliderCard
+            bgURL={item.image}
+          >
+            <span>{item.name}</span>
+          </S.SliderCard>
+        </S.SliderItem>
+      ))}
+    </Carousel>
+  </S.SliderContainer>
 
             <S.TitleCategory>
               <h2>Lancamentos</h2>
